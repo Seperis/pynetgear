@@ -1383,6 +1383,69 @@ class Netgear(object):
             c.SERVICE_WLAN_CONFIGURATION, "GetGuestPortalCustom"
         )
 
+    def get_wireless1_schedule(self):
+        """
+        Return wireless schedule for first SSID on Orbi Pro 6 AX6000 and regular SSID for RAX80
+        ScheduleEnable
+        MonScheduleProfile 
+        TueScheduleProfile
+        WedScheduleProfile
+        ThuScheduleProfile
+        FriScheduleProfile
+        SatScheduleProfile
+        SunScheduleProfile
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetWireless1Schedule"
+        )
+        
+    def get_wireless2_schedule(self):
+        """
+        Return wireless schedule for second SSID on Orbi Pro 6 AX6000 (employee) and possibly for guest network for RAX80
+        ScheduleEnable
+        MonScheduleProfile 
+        TueScheduleProfile
+        WedScheduleProfile
+        ThuScheduleProfile
+        FriScheduleProfile
+        SatScheduleProfile
+        SunScheduleProfile
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetWireless2Schedule"
+        )
+        
+    def get_wireless3_schedule(self):
+        """
+        Return wireless schedule for third SSID on Orbi Pro 6 AX6000 (Iot)
+        ScheduleEnable
+        MonScheduleProfile 
+        TueScheduleProfile
+        WedScheduleProfile
+        ThuScheduleProfile
+        FriScheduleProfile
+        SatScheduleProfile
+        SunScheduleProfile
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetWireless3Schedule"
+        )
+
+    def get_guest_schedule(self):
+        """
+        Return wireless schedule for guest SSID on Orbi Pro 6 AX6000 (guest portal)
+        ScheduleEnable
+        MonScheduleProfile 
+        TueScheduleProfile
+        WedScheduleProfile
+        ThuScheduleProfile
+        FriScheduleProfile
+        SatScheduleProfile
+        SunScheduleProfile
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetGuestSchedule"
+
     def get_smart_connect_enabled(self):
         """Get Smart Connect Enabled and return boolean."""
         response = self._get(
