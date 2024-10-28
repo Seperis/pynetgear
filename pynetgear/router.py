@@ -1246,6 +1246,106 @@ class Netgear(object):
             c.SERVICE_WLAN_CONFIGURATION, c.GET_5G_GUEST_ACCESS_NETWORK_INFO
         )
 
+    def get_2g_wireless3_info(self):
+        """
+        Get info on 2g band for third SSID (Iot) on Orbi 6 Pro AX6000
+        NewSSID
+        NewEnable
+        SeparateSSIDEnabled
+        NewSecurityMode
+        NewKey
+        NewSSIDBroadcast
+        NewAllowAccessLan
+        NewEnterpriseWPAMode
+        NewRadiusServerAddress
+        GetPacketsRx
+        GetPacketsTx
+        GetPacketsErrorRxPath
+        GetPacketsErrorTxPath
+        NewRadiusServerPort
+        VlanProfile
+        VlanEnable
+        
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetWireless3Info"
+        )
+        
+    def get_5g_wireless3_info(self):
+        """
+        Get info on 5g band for third SSID (Iot) on Orbi 6 Pro AX6000
+        NewSSID
+        NewEnable
+        SeparateSSIDEnabled
+        NewSecurityMode
+        NewKey
+        NewSSIDBroadcast
+        NewAllowAccessLan
+        NewEnterpriseWPAMode
+        NewRadiusServerAddress
+        GetPacketsRx
+        GetPacketsTx
+        GetPacketsErrorRxPath
+        GetPacketsErrorTxPath
+        NewRadiusServerPort
+        VlanProfile
+        VlanEnable
+        
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "Get5GWireless3Info"
+        )
+
+        def get_2g_guest_portal(self):
+        """
+        Get info on 2g band for guest portal on Orbi 6 Pro AX6000 
+        NewEnable
+        NewSSID
+        NewSecurityOption
+        NewKey1
+        NewSSIDBroadcast
+        NewAuthMode
+        NewAuthOption
+        NewAuthPassword
+        GetPacketsRx
+        GetPacketsTx
+        GetPacketsErrorRxPath
+        GetPacketsErrorTxPath
+        NewExpiration
+        NewEnterpriseWPAMode
+        NewRadiusServerAddress
+        NewRadiusServerPort
+        VlanProfile
+        VlanEnable
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetGuestPortal"
+        )
+    
+    def get_5g_guest_portal(self):
+        """
+        Get info on 2g band for guest portal on Orbi 6 Pro AX6000 
+        NewEnable
+        NewSSID
+        NewSecurityOption
+        NewKey1
+        NewSSIDBroadcast
+        NewAuthMode
+        NewAuthOption
+        NewAuthPassword
+        GetPacketsRx
+        GetPacketsTx
+        GetPacketsErrorRxPath
+        GetPacketsErrorTxPath
+        NewExpiration
+        NewEnterpriseWPAMode
+        NewRadiusServerAddress
+        NewRadiusServerPort
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "Get5GGuestPortal"
+        )
+
     def get_smart_connect_enabled(self):
         """Get Smart Connect Enabled and return boolean."""
         response = self._get(
@@ -1262,3 +1362,4 @@ class Netgear(object):
             c.SET_SMART_CONNECT_ENABLED,
             {"NewSmartConnectEnable": value},
         )
+        
