@@ -1346,6 +1346,43 @@ class Netgear(object):
             c.SERVICE_WLAN_CONFIGURATION, "Get5GGuestPortal"
         )
 
+    def get_wireless1_enabled(self):
+        """
+        Return enabled status for first SSID on Orbi Pro 6 AX6000 and regular SSID for RAX80
+        NewEnable
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetWireless1Enabled"
+        )
+        
+    def get_wireless1_separate_ssid_enabled(self):
+        """
+        Return whether separate SSID is enabled (2G/5G) for first SSID on Orbi Pro 6 AX6000 and regular SSID for RAX80
+        NewEnable
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetWireless1SeparateSSIDEnabled"
+        )
+
+    def get_guest_portal_separate_ssid_enabled(self):
+        """
+        Return whether separate SSID is enabled (2G/5G) for guest portal on Orbi Pro 6 AX6000
+        NewEnable
+        """
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetGuestPortalSeparateSSIDEnabled"
+        )
+ 
+    def get_guest_portal_custom(self):
+        """
+        Return information about custom guest portal for Orbi Pro 6 AX6000
+        NewRedirURLType
+        NewRedirURL
+        """"
+        return self._get(
+            c.SERVICE_WLAN_CONFIGURATION, "GetGuestPortalCustom"
+        )
+
     def get_smart_connect_enabled(self):
         """Get Smart Connect Enabled and return boolean."""
         response = self._get(
