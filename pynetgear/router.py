@@ -1462,4 +1462,88 @@ class Netgear(object):
             c.SET_SMART_CONNECT_ENABLED,
             {"NewSmartConnectEnable": value},
         )
+
+    def get_time_info(self):	
+        """
+        Get time servers and return dict like:
+        NewNTPServer1
+        NewNTPServer2
+        NewNTPServer3
+        NewNTPServer4
+        """	
+        return self._get(c.SERVICE_TIME,"GetInfo")
+
+    def get_configuration_timestamp(self):
+        """ 
+        Return configuration timestamp
+        NewTimestamp
+        """
+        return self._get(
+            c.SERVICE_DEVICE_CONFIG, "GetConfigurationTimestamp"
+        )
+
+    def get_region(self):	
+        """
+        Get region for router
+        NewRegion
+        """	
+        return self._get(c.SERVICE_WLAN_CONFIGURATION ,"GetRegion",)  
+
+    def get_2g_support_mode(self):	
+        """
+        Get Support Mode for 2g band
+        SupportModes
+        """	
+        success, response=self._make_request(
+		c.SERVICE_WLAN_CONFIGURATION,"GetSupportMode",
+		params={"NewBand": "2.4G"},)
+
+        if not success:
+            _LOGGER.error("Get support mode failed")
+            return None
+            
+        success, node = h.find_node(
+            response.text, ".//GetSupportModeResponse"
+        )
+        
+        if not success:
+            _LOGGER.error('Node failed?')
+            return None
+            
+        if node.text is None:
+            _LOGGER.error("Error parsing GetSupportModeResponse")
+            _LOGGER.debug(response.text)
+            return None
+            
+        parse_text=lambda text: text    
+        return {t.tag: parse_text(t.text) for t in node}
+        
+    def get_5g_support_mode(self):	
+        """
+        Get Support Mode for 5G band
+        SupportModes
+        """	
+        success, response=self._make_request(
+		c.SERVICE_WLAN_CONFIGURATION,"GetSupportMode",
+		params={"NewBand": "5G"},)
+
+        if not success:
+            _LOGGER.error("Get support mode failed")
+            return None
+            
+        success, node = h.find_node(
+            response.text, ".//GetSupportModeResponse"
+        )
+        
+        if not success:
+            _LOGGER.error('Node failed?')
+            return None
+            
+        if node.text is None:
+            _LOGGER.error("Error parsing GetSupportModeResponse")
+            _LOGGER.debug(response.text)
+            return None
+            
+        parse_text=lambda text: text    
+        return {t.tag: parse_text(t.text) for t in node}
         
